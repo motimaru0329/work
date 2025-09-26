@@ -1,0 +1,57 @@
+Rails.application.routes.draw do
+  root "articles#index"   # 最初に一覧ページを表示する
+  resources :articles     # 一覧・詳細・新規・編集・削除のルートをまとめて作成
+end
+
+
+#--------------------------------
+
+class ArticlesController < ApplicationController
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
+
+  def index
+    @articles = Article.all
+  end
+
+  def show
+  end
+
+  def new
+    @article = Article.new
+  end
+
+  def create
+    @article = Article.new(article_params)
+    if @article.save
+      redirect_to articles_path, notice: "投稿を作成しました。"
+    else
+      render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @article.update(article_params)
+      redirect_to articles_path, notice: "投稿を更新しました。"
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @article.destroy
+    redirect_to articles_path, alert: "投稿を削除しました。"
+  end
+
+  private
+
+  def set_article
+    @article = Article.find(params[:id])
+  end
+
+  def article_params
+    params.require(:article).permit(:title, :content)
+  end
+end
