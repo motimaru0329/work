@@ -1,0 +1,14 @@
+<h1>マイページ</h1>
+
+<% if @user %>
+  <p>ようこそ、<%= @user.name %>さん！</p>
+  <p>メールアドレス：<%= @user.email %></p>
+<% else %>
+  <p>ユーザー情報が見つかりません。</p>
+<% end %>
+
+<hr>
+
+<%= link_to "トップページへ戻る", root_path %><br>
+<%= link_to "ログアウト", logout_path, method: :delete %>
+
