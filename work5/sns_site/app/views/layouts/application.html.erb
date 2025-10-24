@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SNSサイト</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <header>
+      <% if user_signed_in? %>
+        <p>ログイン中: <%= current_user.name %></p>
+        <nav>
+          <%= link_to "マイページ", mypage_path %> |
+          <%= link_to "プロフィール編集", edit_mypage_path %> |
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: { turbo_confirm: "ログアウトしますか？" } %>
+        </nav>
+      <% else %>
+        <nav>
+          <%= link_to "トップ", root_path %> |
+          <%= link_to "ログイン", new_user_session_path, data: { turbo: false } %> |
+          <%= link_to "新規登録", new_user_registration_path, data: { turbo: false } %>
+        </nav>
+      <% end %>
+    </header>
+
+    <main>
+      <%= yield %>
+    </main>
+  </body>
+</html>

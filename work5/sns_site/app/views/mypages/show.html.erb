@@ -1,0 +1,7 @@
+<h2>マイページ</h2>
+<p>名前: <%= @user.name %></p>
+<p>自己紹介: <%= @user.profile %></p>
+
+<%= link_to "編集", edit_mypage_path %> |
+<%= link_to "トップに戻る", root_path %> |
+<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
