@@ -1,0 +1,8 @@
+<h1>新規ジャンル</h1>
+<%= form_with model: @genre do |f| %>
+  <p>
+    <%= f.label :genre_name, "ジャンル名" %><br>
+    <%= f.text_field :genre_name %>
+  </p>
+  <%= f.submit "登録" %>
+<% end %>

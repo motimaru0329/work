@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NoGemSearchPractice</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <nav style="margin-bottom: 20px;">
+      <%= link_to "料理一覧", cookings_path %> |
+      <%= link_to "新規料理", new_cooking_path %> |
+      <%= link_to "新規ジャンル", new_genre_path %>
+    </nav>
+
+    <%= yield %>
+  </body>
+</html>

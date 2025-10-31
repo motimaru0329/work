@@ -1,0 +1,19 @@
+<h1>料理一覧</h1>
+
+<%= form_with url: cookings_path, method: :get, local: true do |f| %>
+  <p>
+    <%= f.label :title, "料理名" %>
+    <%= f.text_field :title, value: params[:title] %>
+  </p>
+  <p>
+    <%= f.label :genre_id, "ジャンル" %>
+    <%= f.collection_select(:genre_id, @genres, :id, :genre_name, include_blank: " ") %>
+  </p>
+  <%= f.submit "検索" %>
+<% end %>
+
+<ul>
+  <% @cookings.each do |c| %>
+    <li><%= link_to c.title, cooking_path(c) %> (<%= c.genre.genre_name %>)</li>
+  <% end %>
+</ul>
